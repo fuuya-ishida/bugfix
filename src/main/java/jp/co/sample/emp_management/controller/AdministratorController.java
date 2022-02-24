@@ -86,8 +86,8 @@ public class AdministratorController {
 		//修正（１−１）　従業員一覧画面へフォワードする記述を削除
 		//return "employee/list";
 		
-		//修正（１−１）　ログイン画面へフォワードする記述を追加
-		return "administrator/login";
+		//修正（１−１、１−４）　ログイン画面へリダイレクトする記述を追加
+		return "redirect:/";
 		
 	}
 

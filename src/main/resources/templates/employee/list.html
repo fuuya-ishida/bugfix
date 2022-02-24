@@ -81,9 +81,8 @@
 							</td>
 							<td>
 								<!-- (4-1)日付フォーマット修正 -->
-								<span th:text="|${#dates.year(employee.hireDate)}年|"></span>
-								<span th:text="|${#dates.month(employee.hireDate)}月|"></span>
-								<span th:text="|${#dates.day(employee.hireDate)}日|"></span>
+								<span th:text="${employee.hireDate}"></span>
+								
 								
 								
 							</td>

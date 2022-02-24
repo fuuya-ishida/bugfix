@@ -80,7 +80,12 @@
 								</a>
 							</td>
 							<td>
-								<span th:text="${employee.hireDate}">2016/12/1</span>
+								<!-- (4-1)日付フォーマット修正 -->
+								<span th:text="|${#dates.year(employee.hireDate)}年|"></span>
+								<span th:text="|${#dates.month(employee.hireDate)}月|"></span>
+								<span th:text="|${#dates.day(employee.hireDate)}日|"></span>
+								
+								
 							</td>
 							<td>
 								<span th:text="${employee.dependentsCount} + '人'">3人</span>

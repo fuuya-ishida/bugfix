@@ -34,8 +34,13 @@
 					<form method="post" action="login.html" th:action="@{/insert}" th:object="${insertAdministratorForm}">
 						<fieldset>
 							<legend>管理者登録<br>(システムにログインできる管理者を登録します)</legend>
-							<!-- (1-3)Eメール重複チェック機能追加 -->
+							<!-- Eメール重複時エラー文 -->
 							<span th:text="${errorMessage}" class="error-messages"></span>
+							
+							<!-- (1-5) 確認用パスワード機能追加　エラー文-->
+							<span th:text="${errorMessage2}" class="error-messages"></span>
+							
+							
 							<!-- 氏名 -->
 							<div class="form-group">
 								<div class="row">
@@ -81,6 +86,25 @@
 									</div>
 								</div>
 							</div>
+							
+							<!-- (1-5)確認用パスワード機能追加 -->
+							<!-- 確認用パスワード欄 -->
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-12">
+										<label for="confirmationPassword">
+											確認用パスワード:
+										</label>
+										<label th:if="${#fields.hasErrors('confirmationPassword')}" th:errors="*{confirmationPassword}" class="error-messages">
+											パスワードを入力してください
+										</label>
+										<input type="password" name="confirmationPassword" id="confirmationPassword" class="form-control" placeholder="confirmationpassword"
+											 th:field="*{confirmationPassword}" th:errorclass="error-input" >
+										
+									</div>
+								</div>
+							</div>
+							
 							<!-- 登録ボタン -->
 							<div class="form-group">
 								<div class="row">

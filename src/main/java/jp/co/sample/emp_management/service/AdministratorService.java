@@ -41,7 +41,7 @@ public class AdministratorService {
 	}
 	
 	
-	//(1-3)Eメール重複チェック機能追加
+	
 	/**
 	 * メールアドレス情報を元に管理者情報を検索
 	 * @param mailAddress メールアドレス

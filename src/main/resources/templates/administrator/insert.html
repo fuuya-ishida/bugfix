@@ -34,6 +34,8 @@
 					<form method="post" action="login.html" th:action="@{/insert}" th:object="${insertAdministratorForm}">
 						<fieldset>
 							<legend>管理者登録<br>(システムにログインできる管理者を登録します)</legend>
+							<!-- (1-3)Eメール重複チェック機能追加 -->
+							<span th:text="${errorMessage}" class="error-messages"></span>
 							<!-- 氏名 -->
 							<div class="form-group">
 								<div class="row">

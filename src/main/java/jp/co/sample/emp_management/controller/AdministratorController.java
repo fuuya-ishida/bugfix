@@ -73,11 +73,22 @@ public class AdministratorController {
 	 * @return ログイン画面へリダイレクト
 	 */
 	@RequestMapping("/insert")
-	public String insert(@Validated InsertAdministratorForm form,BindingResult result) {
+	public String insert(@Validated InsertAdministratorForm form,BindingResult result,Model model) {
 		
+		//修正(1-2) 入力値エラー処理の追加
 		if(result.hasErrors()) {
 			return toInsert();
 		}
+		
+		//(1-3)Eメール重複チェック機能追加
+		if(administratorService.findByMailAddress(form.getMailAddress()) != null) {
+			String errorMessage = "入力されたメールアドレスはすでに登録されています";
+			
+			model.addAttribute("errorMessage",errorMessage);
+			return toInsert();
+		}
+		
+		
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);

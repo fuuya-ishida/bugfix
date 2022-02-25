@@ -75,16 +75,26 @@ public class AdministratorController {
 	@RequestMapping("/insert")
 	public String insert(@Validated InsertAdministratorForm form,BindingResult result,Model model) {
 		
-		//修正(1-2) 入力値エラー処理の追加
+		
 		if(result.hasErrors()) {
 			return toInsert();
 		}
 		
-		//(1-3)Eメール重複チェック機能追加
+		
 		if(administratorService.findByMailAddress(form.getMailAddress()) != null) {
 			String errorMessage = "入力されたメールアドレスはすでに登録されています";
 			
 			model.addAttribute("errorMessage",errorMessage);
+			return toInsert();
+		}
+		
+		System.out.println(form.getPassword());
+		System.out.println(form.getConfirmationPassword());
+		
+		//(1-5)確認用パスワード機能追加　パスワードとの一致確認
+		if(! form.getPassword().equals(form.getConfirmationPassword())) {
+			String errorMessage2 = "確認用パスワードが一致していません";
+			model.addAttribute("errorMessage2",errorMessage2);
 			return toInsert();
 		}
 		
@@ -97,7 +107,7 @@ public class AdministratorController {
 		//修正（１−１）　従業員一覧画面へフォワードする記述を削除
 		//return "employee/list";
 		
-		//修正（１−１、１−４）　ログイン画面へリダイレクトする記述を追加
+		
 		return "redirect:/";
 		
 	}
@@ -131,6 +141,10 @@ public class AdministratorController {
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return toLogin();
 		}
+		
+		//（２−１）ログイン者名表示機能追加
+		session.setAttribute("administrator", administrator);
+		
 		return "forward:/employee/showList";
 	}
 	

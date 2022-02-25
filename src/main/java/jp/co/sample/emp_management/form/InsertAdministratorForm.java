@@ -12,21 +12,24 @@ import javax.validation.constraints.Size;
  */
 public class InsertAdministratorForm {
 	/** 名前 */
-	//修正(1-2) 入力値エラー処理の追加
 	@NotBlank(message="名前の入力は必須です")
 	private String name;
 	/** メールアドレス */
-	//修正(1-2) 入力値エラー処理の追加
 	@Email(message="Eメールの形式が不正です")
 	@NotBlank(message="メールアドレスの入力は必須です")
 	
 	private String mailAddress;
 	
 	/** パスワード */
-	//修正(1-2) 入力値エラー処理の追加
 	@NotBlank(message="パスワードの入力は必須です")
 	@Size(min=8,max=16,message="パスワードは8文字以上16文字以内で記載してください")
 	private String password;
+	
+	//修正(1-5) 確認用パスワードの追加
+	/** 確認用パスワード */
+	
+	@NotBlank(message="確認用パスワードの入力は必須です")
+	private String confirmationPassword;
 
 	/**
 	 * @return the name
@@ -70,10 +73,19 @@ public class InsertAdministratorForm {
 		this.password = password;
 	}
 	
+
+	public String getConfirmationPassword() {
+		return confirmationPassword;
+	}
+
+	public void setConfirmationPassword(String confirmationPassword) {
+		this.confirmationPassword = confirmationPassword;
+	}
+
 	@Override
 	public String toString() {
 		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
+				+ ", confirmationPassword=" + confirmationPassword + "]";
 	}
 	
 }

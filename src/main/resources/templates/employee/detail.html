@@ -53,7 +53,8 @@
 
 		<!-- パンくずリスト -->
 		<ol class="breadcrumb">
-			<li>従業員リスト</li>
+		<!-- (4-3)パンくずリストのリンク修正-->
+			<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員リスト</a></li>
 			<li class="active">従業員詳細</li>
 		</ol>
 		
@@ -78,7 +79,8 @@
 							      従業員名
 							    </th>
 							    <td>
-							     <span th:utext="${employee.name}">山田花子</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							     <span th:text="${employee.name}">山田花子</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -94,7 +96,8 @@
 							      性別
 							    </th>
 							    <td>
-							      <span th:utext="${employee.gender}">女性</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.gender}">女性</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -102,10 +105,10 @@
 							      入社日
 							    </th>
 							    <td>
-							      <!-- (4-1)日付フォーマット修正 -->
-							     <span th:utext="|${#dates.year(employee.hireDate)}年|"></span>
-								<span th:utext="|${#dates.month(employee.hireDate)}月|"></span>
-								<span th:utext="|${#dates.day(employee.hireDate)}日|"></span>
+							      <!-- (5-2)XSS　脆弱性の修正-->
+							     <span th:text="|${#dates.year(employee.hireDate)}年|"></span>
+								<span th:text="|${#dates.month(employee.hireDate)}月|"></span>
+								<span th:text="|${#dates.day(employee.hireDate)}日|"></span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -113,7 +116,8 @@
 							      メールアドレス
 							    </th>
 							    <td>
-							      <span th:utext="${employee.mailAddress}">yamada@sample.com</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.mailAddress}">yamada@sample.com</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -121,7 +125,8 @@
 							      郵便番号
 							    </th>
 							    <td>
-							      <span th:utext="${employee.zipCode}">111-1111</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.zipCode}">111-1111</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -129,7 +134,8 @@
 							      住所
 							    </th>
 							    <td>
-							      <span th:utext="${employee.address}">東京都新宿区1-1-1</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.address}">東京都新宿区1-1-1</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -137,7 +143,8 @@
 							      電話番号
 							    </th>
 							    <td>
-							      <span th:utext="${employee.telephone}">090-0000-0000</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.telephone}">090-0000-0000</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -145,8 +152,8 @@
 							      給料
 							    </th>
 							    <td>
-							    	<!-- (4-2)価格フォーマット修正 -->
-							      <span th:utext="${#numbers.formatInteger(employee.salary,3,'COMMA') + '円'}">400000円</span>
+							    	<!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${#numbers.formatInteger(employee.salary,3,'COMMA') + '円'}">400000円</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -154,7 +161,8 @@
 							      特性
 							    </th>
 							    <td>
-							      <span th:utext="${employee.characteristics}">明るく素直な性格です。リーダーシップを発揮します。新卒社員研修の時はグループ開発の時にリーダーを買ってでました。積極性も人間性も抜群です。周りに対する不満も聞いたことがありません。</span>
+							    <!-- (5-2)XSS　脆弱性の修正-->
+							      <span th:text="${employee.characteristics}">明るく素直な性格です。リーダーシップを発揮します。新卒社員研修の時はグループ開発の時にリーダーを買ってでました。積極性も人間性も抜群です。周りに対する不満も聞いたことがありません。</span>
 							    </td>
 							  </tr>
 							  <tr>
